@@ -44,7 +44,7 @@ This application will aim to repplicate the key features which make the Pomodoro
 
 ## Flow Chart
 
-![Flow Chart](docs/flowchart.jpg)
+![Flow Chart](docs/flowchart.JPG)
 
 ## Features (R6)
 
