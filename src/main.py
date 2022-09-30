@@ -1,38 +1,26 @@
 import time
 import sys
-import os
-
-def press_to_continue():
-    os.system("/bin/bash -c 'read -s -n 1 -p \"\n Press any key to continue...\"'")
-    os.system('clear')
-    print()
 
 # User data input function to adjust pomodoro settings
 
 def user_input():
-    while True:
-            try:
-                interval = int(input('Please enter work duration (Mins): '))
-                short_break = int(input('Please enter short break duration (Mins): '))
-                long_break = int(input('Please enter long break duration (Mins): '))
-                total_duration = int(input('Please enter number of Katchup sessions you\'d like to complete (Timer will begin after you press Enter): '))
-                return interval, short_break, long_break, total_duration
-            except ValueError:
-                print('Enter valid number!')
-
+    interval = int(input('Please enter work duration (Mins): '))
+    short_break = int(input('Please enter short break duration (Mins): '))
+    long_break = int(input('Please enter long break duration (Mins): '))
+    total_duration = int(input('Please enter number of Katchup sessions you\'d like to complete (Timer will begin after you press Enter): '))
+    return interval, short_break, long_break, total_duration
         
-
 # Countdown timer function
 
 def countdown(interval):
     for j in range (interval-1,-1,-1):
-        for i in range (59, -1, -1):
+        for i in range(59,-1,-1):
             if i <= 9:
                 sys.stdout.write \
-                    (f'\Duration: {j} Minute(s) 0{i} Seconds to go')
+                (f'\rDuration: {j} Minute(s) 0{i} Seconds  to go')
             else:
                 sys.stdout.write \
-                    (f'\Duration: {j} Minute {i} Seconds to go ')
+                (f'\rDuration: {j} Minute(s) {i} Seconds to go')
             time.sleep(1)
 
 # Ascii Art Welcome
@@ -119,7 +107,7 @@ welcome()
 if __name__ == '__main__':
 
     session_count = 0
-    interval, total_duration, short_break, long_break = user_input()
+    interval, short_break, long_break, total_duration = user_input()
 
     while session_count < total_duration:
         # Work timer that displays how many sessions are remaining
