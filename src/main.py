@@ -3,13 +3,21 @@ import sys
 
 # User data input function to adjust pomodoro settings
 
+
 def user_input():
-    interval = int(input('Please enter work duration (Mins): '))
-    short_break = int(input('Please enter short break duration (Mins): '))
-    long_break = int(input('Please enter long break duration (Mins): '))
-    total_duration = int(input('Please enter number of Katchup sessions you\'d like to complete (Timer will begin after you press Enter): '))
-    return interval, short_break, long_break, total_duration
-        
+    while True:
+        try:
+
+            interval = int(input('Please enter work duration (Mins): '))
+            short_break = int(input('Please enter short break duration (Mins): '))
+            long_break = int(input('Please enter long break duration (Mins): '))
+            total_duration = int(input('Please enter number of Katchup sessions you\'d like to complete (Timer will begin after you press Enter): '))
+            return interval, short_break, long_break, total_duration
+
+        except ValueError:
+            print('Please enter a valid input')
+            continue
+         
 # Countdown timer function
 
 def countdown(interval):
@@ -113,14 +121,16 @@ if __name__ == '__main__':
         # Work timer that displays how many sessions are remaining
         print(f'\nKeep Grinding! You\'ve got {total_duration - session_count} Katchups remaining!')
         countdown(interval)
-        # Short break timer that adds 1 to session count when finished
-        print(f'\nWell Done! You\'ve earned yourself a short break!')
-        countdown(short_break)
         session_count += 1
-        print(f'Katchups Completed: ',session_count, '/',total_duration)
-        # Long break timer occurs after every 4 sessions but not if the it is the last session
-        if session_count%4 == 0 and session_count!=total_duration:
-            print('Great Work! It\'s time for a long break!')
-            countdown(long_break)
 
+        if session_count%4 == 0 and session_count!=total_duration:
+            print('\nGreat Work! It\'s time for a long break!')
+            countdown(long_break)
+        # Short break timer that adds 1 to session count when finished
+        else:
+            print('\nWell Done! You\'ve earned yourself a short break!')
+            countdown(short_break)
+            print('\nKatchups Completed: ',session_count, '/',total_duration)  
+        # Long break timer occurs after every 4 sessions but not if the it is the last session
+        
 goodbye()
