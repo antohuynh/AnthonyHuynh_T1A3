@@ -110,4 +110,17 @@ if __name__ == '__main__':
     interval, total_duration, short_break, long_break = user_input()
 
     while session_count < total_duration:
-        print
+        # Work timer that displays how many sessions are remaining
+        print(f'\nKeep Grinding! You\'ve got {total_duration - session_count} Katchups remaining!')
+        countdown(interval)
+        # Short break timer that adds 1 to session count when finished
+        print(f'\nWell Done! You\'ve earned yourself a short break!')
+        countdown(short_break)
+        session_count += 1
+        print(f'Katchups Completed: ',session_count, '/',total_duration)
+        # Long break timer occurs after every 4 sessions but not if the it is the last session
+        if session_count%4 == 0 and session_count!=total_duration:
+            print('Great Work! It\'s time for a long break!')
+            countdown(long_break)
+
+goodbye()
