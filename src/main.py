@@ -1,14 +1,26 @@
 import time
 import sys
+import os
+
+def press_to_continue():
+    os.system("/bin/bash -c 'read -s -n 1 -p \"\n Press any key to continue...\"'")
+    os.system('clear')
+    print()
 
 # User data input function to adjust pomodoro settings
 
 def user_input():
-    interval = int(input('Please enter work duration (Mins): '))
-    short_break = int(input('Please enter short break duration (Mins): '))
-    long_break = int(input('Please enter long break duration (Mins): '))
-    total_duration = int(input('Please enter number of Katchup sessions you\'d like to complete (Timer will begin after you press Enter): '))
-    return interval, short_break, long_break, total_duration
+    while True:
+            try:
+                interval = int(input('Please enter work duration (Mins): '))
+                short_break = int(input('Please enter short break duration (Mins): '))
+                long_break = int(input('Please enter long break duration (Mins): '))
+                total_duration = int(input('Please enter number of Katchup sessions you\'d like to complete (Timer will begin after you press Enter): '))
+                return interval, short_break, long_break, total_duration
+            except ValueError:
+                print('Enter valid number!')
+
+        
 
 # Countdown timer function
 
